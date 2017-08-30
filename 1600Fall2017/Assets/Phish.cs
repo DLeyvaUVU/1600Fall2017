@@ -7,5 +7,6 @@ public class Phish : Aminal {
         print(this.name + " Swims");
     }
 	void Start() {
+        swim();
     }
 }
