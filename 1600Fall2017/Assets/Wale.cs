@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class Wale : Mamel {
 	
-	
+	void swim () {
+        print(this.name + " Swam");
+    }
+	public override void Start(){
+        swim();
+        base.Start();
+    }
 }

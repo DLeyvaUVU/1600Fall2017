@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Phish : Aminal {
 	void swim () {
-        print(this.name + " Swims");
+        print(this.name + " Swam");
     }
-	void Start() {
+	public override void Start() {
         swim();
+        base.Start();
     }
 }

@@ -5,14 +5,21 @@ using UnityEngine;
 public class Aminal : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
+		eat();
+		sleep();
 		die();
 	}
 
 	void die () {
-		print(this + " Died");
+		print(this.name + " Died");
 	}
-	
+	void eat () {
+		print(this.name + " Ate");
+	}
+	void sleep () {
+		print(this.name + " Slept");
+	}
 	// Update is called once per frame
 	void Update () {
 		
