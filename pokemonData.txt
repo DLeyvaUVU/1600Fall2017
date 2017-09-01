@@ -23,3 +23,28 @@ Hidden Ability:
 Protean: Before the Pokémon uses a move, it becomes a pure Pokémon of that type. 
 Ash-Greninja Ability:
 Battle Bond: Defeating an opposing Pokémon strengthens the Pokémon's bond with its Trainer, and it becomes Ash-Greninja. Water Shuriken gets more powerful.
+
+
+Typhlosion	
+Japan:	Bakphoon
+バクフーン
+French:	Typhlosion
+German:	Tornupto
+Korean:	블레이범
+National:	#157
+Alola:	#---
+Melemele:	#---
+Akala:	#---
+Ula'ula:	#---
+Poni:	#---
+Male ♂:	88.1%
+Female ♀:	11.9%
+
+Classification	Height	Weight	Capture Rate	Base Egg Steps
+Volcano Pokémon	5'07"
+1.7m	175.3lbs
+79.5kg	45	5,120
+Abilities: Blaze - Flash Fire (Hidden Ability)
+Blaze: When HP is below 1/3rd its maximum, power of Fire-type moves is increased by 50%. 
+Hidden Ability (Available through transfer): 
+Flash Fire: Activates when user is hit by a damaging Fire-type move (including Fire-type Hidden Power). Once activated, user’s Fire-type moves deal 1.5 times damage. While this ability is in effect, this Pokémon is immune to damage from Fire-type attacks and Fire-type Hidden Power (accuracy and effect from these moves are ignored). For Fire-type Pokémon with this ability, Will-O-Wisp activates this ability without having an effect. If a non-Fire-type Pokémon has this ability, Will-O-Wisp will activate the ability and will have an effect.
