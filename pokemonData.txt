@@ -1,0 +1,25 @@
+Greninja	
+Japan:	Gekkouga
+ゲッコウガ
+French:	Amphinobi
+German:	Quajutsu
+Korean:	개굴닌자
+National:	#658
+Alola:	#---
+Melemele:	#---
+Akala:	#---
+Ula'ula:	#---
+Poni:	#---
+Male ♂:	88.1%
+Female ♀:	11.9%
+ 
+Classification	Height	Weight	Capture Rate	Base Egg Steps
+Ninja Pokémon	4'11"
+1.5m	88.2lbs
+40.0kg	45	5,120
+Abilities: Torrent - Protean (Hidden Ability) (Standard) - Battle Bond (Ash-Greninja Only)
+Torrent: When HP is below 1/3rd its maximum, power of Water-type moves is increased by 50%. 
+Hidden Ability:
+Protean: Before the Pokémon uses a move, it becomes a pure Pokémon of that type. 
+Ash-Greninja Ability:
+Battle Bond: Defeating an opposing Pokémon strengthens the Pokémon's bond with its Trainer, and it becomes Ash-Greninja. Water Shuriken gets more powerful.
