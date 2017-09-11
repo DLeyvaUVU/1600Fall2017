@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Aminal : MonoBehaviour {
-	int age;
+	public int age;
 	// Use this for initialization
 	public virtual void Start () {
 		exist();
@@ -24,9 +24,9 @@ public class Aminal : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (age < 1000) {
-			int age++;
+			age++;
 		} else {
-			int = 1;
+			age = 0;
 			exist();
 		}
 		switch (age) {
