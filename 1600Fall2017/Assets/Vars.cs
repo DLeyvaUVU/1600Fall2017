@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vars : MonoBehaviour {
+public class Vars : Aminal {
 	public float health = 100;
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
 		health = 200;
 	}
 	
@@ -18,7 +18,7 @@ public class Vars : MonoBehaviour {
 		if (health > 0) {
 			health -= 0.1f;
 		} else {
-			print("You Died!");
+			die();
 		}
 	}
 }

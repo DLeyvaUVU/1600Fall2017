@@ -12,7 +12,7 @@ public class Aminal : MonoBehaviour {
 	void exist () {
 		print(this.name + " came into existence.");
 	}
-	void die () {
+	public void die () {
 		print(this.name + " Died");
 	}
 	void eat () {
