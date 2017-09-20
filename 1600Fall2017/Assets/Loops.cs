@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Loops : MonoBehaviour {
-	public string[] pickups;
 	public bool canPlay = true;
-	void Start (){
-		foreach (var item in pickups) {
-			print("I found a " + item + " pickup!");
-		}
+	void Start() {
+		StartCoroutine(PlayGame());
 	}
-	void Update()
-	{
-		if (canPlay) {
-			print("Playing Game.");
-		} else {
-			print("Game Over");
+	IEnumerator PlayGame () {
+		while (canPlay) {
+			print("Playing");
+			yield return new WaitForSeconds(0.1f);
 		}
+		print("Game Over");
 	}
 }
