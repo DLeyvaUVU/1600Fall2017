@@ -15,8 +15,8 @@ public class Aminal : MonoBehaviour {
 	public void die () {
 		print(this.name + " Died");
 	}
-	void eat () {
-		print(this.name + " Ate");
+	void eat (string food, int amount) {
+		print(this.name + " ate " + amount + " " + food);
 	}
 	void sleep () {
 		print(this.name + " Slept");
@@ -31,7 +31,7 @@ public class Aminal : MonoBehaviour {
 		}
 		switch (age) {
 			case 300:
-				eat();
+				eat("bananas", 10);
 				break;
 			case 600:
 				sleep();
