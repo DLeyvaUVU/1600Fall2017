@@ -8,7 +8,6 @@ public class MathFunctions : MonoBehaviour {
 	void Start () {
 		myScore = returnZero ();
 		print(CheckPassword(myPassword));
-		myPassword.
 	}
 	public int myScore = 100;
 	public string myPassword; 
