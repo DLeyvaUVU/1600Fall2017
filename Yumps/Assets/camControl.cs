@@ -10,8 +10,7 @@ public class camControl : MonoBehaviour {
 		offset = transform.position - player.transform.position;
 	}
 	
-	// Update is called once per frame
-	void LateUpdate () {
+	void LateUpdate () {//calculated after physics every frame
 		transform.position = player.transform.position + offset;
 	}
 }
