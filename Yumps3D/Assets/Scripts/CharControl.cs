@@ -8,6 +8,7 @@ public class CharControl : MonoBehaviour {
 	public Vector3 moveVector3;
 	public float speed = 10;
 	public float jumpForce = 50;
+	public static int health;
 	void Start () {
 		
 	}
