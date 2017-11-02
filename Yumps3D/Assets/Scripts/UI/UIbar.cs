@@ -12,21 +12,36 @@ public class UIbar : MonoBehaviour {
 	void Start () {
 		StartCoroutine(UpdateBar());
 	}
+	void ApplyDamage () {
+		StartCoroutine(UpdateBar());
+	}
 	void Update()
 	{
 		bar.color = barColor;
 	}
 	
 	IEnumerator UpdateBar () {
-		while (bar.fillAmount > 0) {
-			bar.fillAmount -= barTime/10;
+		float fillStart = bar.fillAmount;
+		float healthPercent = CharControl.health/100;
+		float diffSign = Mathf.Sign(healthPercent - fillStart);
+		yield return new WaitForSeconds(.5f);
+		while (!(healthPercent == bar.fillAmount)) {
+			bar.fillAmount += ((healthPercent - fillStart)*5)*Time.deltaTime;
 			if (bar.fillAmount > 0.5f) {
 				barColor.r = ((1-bar.fillAmount)*2)*0.839f;
 			} else {
 				barColor.r = 0.839f;
 				barColor.g = bar.fillAmount*2*0.839f;
 			}
+			if ((diffSign > 0)&&(bar.fillAmount > healthPercent)) {
+				bar.fillAmount = healthPercent;
+			} else {
+				if ((diffSign < 0)&&(bar.fillAmount < healthPercent)) {
+					bar.fillAmount = healthPercent;
+				}
+			}
 			yield return new WaitForSeconds(barTime);
 		}
+		
 	}
 }
