@@ -12,6 +12,8 @@ public class CharControl : MonoBehaviour {
 	public float speed;
 	public float jumpForce;
 	public static float health = 100;//global variable for the player's health
+	public static int TotalCoins;
+	public Text CoinUI;
 	public GameObject HealthBar;
 	void Start () {
 	}
@@ -37,9 +39,19 @@ public class CharControl : MonoBehaviour {
 					HealthBar.BroadcastMessage("ApplyDamage");
 				}
 				break;
+			case "checkpoint":
+				ReplayGame.startPosition = other.transform.position;//sets checkpoint
+				break;
+			case "coin":
+				TotalCoins = int.Parse(CoinUI.text);//gets current amount of coins
+
+				break;
 			default:
 				break;
 		}
+	}
+	IEnumerator collectCoin () {
+		return null;
 	}
 	void Update () {
 		move.x = Input.GetAxis("Horizontal") * speed;

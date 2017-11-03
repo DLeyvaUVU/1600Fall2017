@@ -11,7 +11,6 @@ public class UIbar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		barColor.g=0.839f;
 		StartCoroutine(UpdateBar());
 	}
 	void ApplyDamage () {
