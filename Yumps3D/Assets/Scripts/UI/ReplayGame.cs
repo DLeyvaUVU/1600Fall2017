@@ -8,7 +8,6 @@ public class ReplayGame : MonoBehaviour {
 	public Image uiBar;
 	public GameObject GameOverUI;
 	public static Vector3 startPosition;
-	private float fillAmount;
 	void Awake()
 	{
 		startPosition = player.position;
