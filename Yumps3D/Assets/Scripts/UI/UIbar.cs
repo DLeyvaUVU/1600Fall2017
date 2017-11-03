@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class UIbar : MonoBehaviour {
 	public Image bar;
 	public Color barColor;
-	public float barSpeed;
+	public float barDecSpeed;
+	public float barIncSpeed;
 
 	// Use this for initialization
 	void Start () {
+		barColor.g=0.839f;
 		StartCoroutine(UpdateBar());
 	}
 	void ApplyDamage () {
@@ -26,13 +28,11 @@ public class UIbar : MonoBehaviour {
 		float healthPercent = CharControl.health/100;
 		float diffSign = Mathf.Sign(healthPercent - fillStart);
 		while (!(healthPercent == bar.fillAmount)) {
-			bar.fillAmount += barSpeed*diffSign*Time.deltaTime;
-			if (bar.fillAmount > 0.5f) {
-				barColor.r = ((1-bar.fillAmount)*2)*0.839f;
-				barColor.g = 0.839f;
-			} else {
-				barColor.r = 0.839f;
-				barColor.g = bar.fillAmount*2*0.839f;
+			if (diffSign > 0) {
+				bar.fillAmount += barIncSpeed*diffSign*Time.deltaTime;
+			}
+			if (diffSign < 0) {
+				bar.fillAmount += barDecSpeed*diffSign*Time.deltaTime;
 			}
 			if (diffSign == 0) {
 				bar.fillAmount = healthPercent;
@@ -43,6 +43,13 @@ public class UIbar : MonoBehaviour {
 				if ((diffSign < 0)&&(bar.fillAmount < healthPercent)) {
 					bar.fillAmount = healthPercent;
 				}
+			}
+			if (bar.fillAmount > 0.5f) {
+				barColor.r = ((1-bar.fillAmount)*2)*0.839f;
+				barColor.g = 0.839f;
+			} else {
+				barColor.r = 0.839f;
+				barColor.g = bar.fillAmount*2*0.839f;
 			}
 			yield return 0;
 		}

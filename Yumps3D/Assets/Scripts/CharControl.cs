@@ -11,10 +11,9 @@ public class CharControl : MonoBehaviour {
 	public Vector3 moveTimed;
 	public float speed;
 	public float jumpForce;
-	public static float health = 50;
+	public static float health = 100;
 	public GameObject HealthBar;
 	void Start () {
-		print(health);
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -27,6 +26,15 @@ public class CharControl : MonoBehaviour {
 					CharControl.health = 0;
 					HealthBar.BroadcastMessage("ApplyDamage");
 					endScreen.SetActive(true);
+				}
+				break;
+			case "powerup":
+				if (100 < (CharControl.health + 15)) {
+					CharControl.health = 100;
+					HealthBar.BroadcastMessage("ApplyDamage");
+				} else {
+					CharControl.health += 15;
+					HealthBar.BroadcastMessage("ApplyDamage");
 				}
 				break;
 			default:

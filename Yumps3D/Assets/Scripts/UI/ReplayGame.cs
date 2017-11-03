@@ -16,7 +16,7 @@ public class ReplayGame : MonoBehaviour {
 		GameOverUI.SetActive(false);
 	}
 	public void Click () {
-		CharControl.health = 50;
+		CharControl.health = 100;
 		player.position = startPosition;
 		uiBar.BroadcastMessage("ApplyDamage");
 		GameOverUI.SetActive(false);
