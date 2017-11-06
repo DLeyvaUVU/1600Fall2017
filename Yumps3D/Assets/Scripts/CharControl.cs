@@ -15,6 +15,7 @@ public class CharControl : MonoBehaviour {
 	public static int TotalCoins;
 	public Text CoinUI;
 	public GameObject HealthBar;
+	public static bool playerActive = true;
 	void Start () {
 	}
 	void OnTriggerEnter(Collider other)
@@ -27,6 +28,7 @@ public class CharControl : MonoBehaviour {
 				} else {
 					CharControl.health = 0;
 					HealthBar.BroadcastMessage("ApplyDamage");
+					playerActive = false;
 					endScreen.SetActive(true);
 				}
 				break;
@@ -44,31 +46,39 @@ public class CharControl : MonoBehaviour {
 				break;
 			case "coin":
 				TotalCoins = int.Parse(CoinUI.text);//gets current amount of coins
-
+				StartCoroutine(collectCoin());
+				other.gameObject.SetActive(false);
 				break;
 			default:
 				break;
 		}
 	}
 	IEnumerator collectCoin () {
-		return null;
+		int newCoins = TotalCoins + 10;
+		while (TotalCoins < newCoins) {
+			TotalCoins++;
+			CoinUI.text = TotalCoins.ToString();
+			yield return 0;
+		}
 	}
 	void Update () {
-		move.x = Input.GetAxis("Horizontal") * speed;
-		if (characterController.isGrounded) {
-			if (Input.GetKeyDown("space")) {
-				move.y = jumpForce;//only jumps if on the ground
-			}
-			
-		} else {
-			if (move.y > -50) {//checks for terminal velocity
-				move.y -= gravity * Time.deltaTime;//only applies gravity off the ground
+		if (playerActive) {
+			move.x = Input.GetAxis("Horizontal") * speed;
+			if (characterController.isGrounded) {
+				if (Input.GetKeyDown("space")) {
+					move.y = jumpForce;//only jumps if on the ground
+				}
+
 			} else {
-				move.y = -50;//applies terminal velocity
+				if (move.y > -50) {//checks for terminal velocity
+					move.y -= gravity * Time.deltaTime;//only applies gravity off the ground
+				} else {
+					move.y = -50;//applies terminal velocity
+				}
 			}
+			moveTimed.x = move.x*Time.deltaTime;//deltaTime is applied seperately so modifiers are easily implemented
+			moveTimed.y = move.y*Time.deltaTime;
+			characterController.Move(moveTimed);
 		}
-		moveTimed.x = move.x*Time.deltaTime;//deltaTime is applied seperately so modifiers are easily implemented
-		moveTimed.y = move.y*Time.deltaTime;
-		characterController.Move(moveTimed);
 	}
 }
