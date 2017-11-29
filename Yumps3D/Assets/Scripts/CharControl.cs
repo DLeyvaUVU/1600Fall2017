@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class CharControl : MonoBehaviour {
 	public CharacterController characterController;
 	public GameObject endScreen;
+	public ParticleSystem burstEffect;
 	public float gravity;
 	public Vector3 move;//movement in units per second
 	public Vector3 moveTimed;//movement with frametiming applied for framerate independence
 	public float speed;
 	public float jumpForce;
+	public int burstNum;
 	public static float health = 100;//global variable for the player's health
 	public static int TotalCoins;
 	public Text CoinUI;
@@ -28,7 +30,7 @@ public class CharControl : MonoBehaviour {
 				} else {
 					CharControl.health = 0;
 					HealthBar.BroadcastMessage("ApplyDamage");
-					playerActive = false;
+					CharControl.playerActive = false;
 					endScreen.SetActive(true);
 				}
 				break;
@@ -70,6 +72,10 @@ public class CharControl : MonoBehaviour {
 				}
 
 			} else {
+				if (Input.GetKeyDown("space")&&(burstNum>0)) {
+					move.y = jumpForce;
+					burstNum--;
+				}
 				if (move.y > -50) {//checks for terminal velocity
 					move.y -= gravity * Time.deltaTime;//only applies gravity off the ground
 				} else {
