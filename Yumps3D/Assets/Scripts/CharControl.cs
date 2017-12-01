@@ -63,10 +63,19 @@ public class CharControl : MonoBehaviour {
 			yield return 0;
 		}
 	}
+	IEnumerator burst () {
+		burstEffect.Emit(10);
+		burstEffect.Play();
+		yield return new WaitForSeconds(2);
+		burstEffect.Stop();
+	}
 	void Update () {
 		if (playerActive) {
 			move.x = Input.GetAxis("Horizontal") * speed;
 			if (characterController.isGrounded) {
+				if (burstEffect.isPlaying) {
+					burstEffect.Stop();
+				}
 				if (Input.GetKeyDown("space")) {
 					move.y = jumpForce;//only jumps if on the ground
 				}
@@ -74,8 +83,8 @@ public class CharControl : MonoBehaviour {
 			} else {
 				if (Input.GetKeyDown("space")&&(burstNum>0)) {
 					move.y = jumpForce;
-					burstNum--;
-					burstEffect.Emit(10);
+					burstNum--;	
+					StartCoroutine(burst());
 				}
 				if (move.y > -50) {//checks for terminal velocity
 					move.y -= gravity * Time.deltaTime;//only applies gravity off the ground
