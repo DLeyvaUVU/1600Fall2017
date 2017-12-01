@@ -23,7 +23,7 @@ public class CharControl : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		switch (other.gameObject.tag){ //looks at the tag of the other object
-			case "hazard":
+	/*		case "hazard":
 				if ((CharControl.health - 15)> 0) {//decrease health of player by 15 without going below zero
 					CharControl.health -= 15; 
 					HealthBar.BroadcastMessage("ApplyDamage");
@@ -42,7 +42,7 @@ public class CharControl : MonoBehaviour {
 					CharControl.health += 15;
 					HealthBar.BroadcastMessage("ApplyDamage");
 				}
-				break;
+				break;*/
 			case "checkpoint":
 				ReplayGame.startPosition = other.transform.position;//sets checkpoint
 				break;
@@ -75,6 +75,7 @@ public class CharControl : MonoBehaviour {
 				if (Input.GetKeyDown("space")&&(burstNum>0)) {
 					move.y = jumpForce;
 					burstNum--;
+					burstEffect.Emit(10);
 				}
 				if (move.y > -50) {//checks for terminal velocity
 					move.y -= gravity * Time.deltaTime;//only applies gravity off the ground
