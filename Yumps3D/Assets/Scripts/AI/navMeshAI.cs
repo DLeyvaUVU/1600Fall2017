@@ -9,14 +9,10 @@ public class navMeshAI : MonoBehaviour {
 	public float speedSet;
 	public NavMeshAgent agent;
 	void Update () {
-		if ((Vector3.Distance(transform.position, player.position)-dist) > .1f) {
-			agent.velocity.Set(0,0,0);
-			agent.Stop();
-		}
 		agent.ResetPath();
 		agent.destination = new Vector3(player.position.x, player.position.z, player.position.y);
 		if (agent.pathPending) {
-			dist = Vector3.Distance(transform.position, player.position);
+			dist = Vector3.Distance(transform.position, new Vector3(player.position.x, player.position.z, player.position.y));
 		} else {
 			dist = agent.remainingDistance;
 		}

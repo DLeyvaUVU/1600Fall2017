@@ -12,7 +12,7 @@ public class CharControl : MonoBehaviour {
 	public Vector3 moveTimed;//movement with frametiming applied for framerate independence
 	public float speed;
 	public float jumpForce;
-	public int burstNum;
+	public static int burstNum;
 	public static float health = 100;//global variable for the player's health
 	public static int TotalCoins;
 	public Text CoinUI;
@@ -24,26 +24,6 @@ public class CharControl : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		switch (other.gameObject.tag){ //looks at the tag of the other object
-	/*		case "hazard":
-				if ((CharControl.health - 15)> 0) {//decrease health of player by 15 without going below zero
-					CharControl.health -= 15; 
-					HealthBar.BroadcastMessage("ApplyDamage");
-				} else {
-					CharControl.health = 0;
-					HealthBar.BroadcastMessage("ApplyDamage");
-					CharControl.playerActive = false;
-					endScreen.SetActive(true);
-				}
-				break;
-			case "powerup":
-				if (100 < (CharControl.health + 15)) {//increase health of player by 15 without going above 100
-					CharControl.health = 100;
-					HealthBar.BroadcastMessage("ApplyDamage");
-				} else {
-					CharControl.health += 15;
-					HealthBar.BroadcastMessage("ApplyDamage");
-				}
-				break;*/
 			case "checkpoint":
 				ReplayGame.startPosition = other.transform.position;//sets checkpoint
 				break;
