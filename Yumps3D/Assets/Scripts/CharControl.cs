@@ -18,6 +18,7 @@ public class CharControl : MonoBehaviour {
 	public Text CoinUI;
 	public GameObject HealthBar;
 	public static bool playerActive = true;
+	float s;
 	void Start () {
 	}
 	void OnTriggerEnter(Collider other)
@@ -66,8 +67,12 @@ public class CharControl : MonoBehaviour {
 	IEnumerator burst () {
 		burstEffect.Emit(10);
 		burstEffect.Play();
+		s++;
 		yield return new WaitForSeconds(2);
-		burstEffect.Stop();
+		s--;
+		if (s==0) {
+			burstEffect.Stop();
+		}
 	}
 	void Update () {
 		if (playerActive) {
