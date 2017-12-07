@@ -12,13 +12,12 @@ public class CharControl : MonoBehaviour {
 	public Vector3 moveTimed;//movement with frametiming applied for framerate independence
 	public float speed;
 	public float jumpForce;
-	public static int burstNum;
+	public static int burstNum = 50;
 	public static float health = 100;//global variable for the player's health
 	public static int TotalCoins;
 	public Text CoinUI;
 	public GameObject HealthBar;
 	public static bool playerActive = true;
-	float s;
 	void Start () {
 	}
 	void OnTriggerEnter(Collider other)
@@ -44,16 +43,6 @@ public class CharControl : MonoBehaviour {
 			yield return 0;
 		}
 	}
-	IEnumerator burst () {
-		burstEffect.Emit(10);
-		burstEffect.Play();
-		s++;
-		yield return new WaitForSeconds(2);
-		s--;
-		if (s==0) {
-			burstEffect.Stop();
-		}
-	}
 	void Update () {
 		if (playerActive) {
 			move.x = Input.GetAxis("Horizontal") * speed;
@@ -69,7 +58,12 @@ public class CharControl : MonoBehaviour {
 				if (Input.GetKeyDown("space")&&(burstNum>0)) {
 					move.y = jumpForce;
 					burstNum--;	
-					StartCoroutine(burst());
+					var emitParams = new ParticleSystem.EmitParams();
+					var main = burstEffect.main;
+					main.startSpeed = 5;
+					burstEffect.Emit(30);
+					main.startSpeed = 1;
+					burstEffect.Play();
 				}
 				if (move.y > -50) {//checks for terminal velocity
 					move.y -= gravity * Time.deltaTime;//only applies gravity off the ground
