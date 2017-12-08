@@ -47,6 +47,7 @@ public class CharControl : MonoBehaviour {
 		if (playerActive) {
 			move.x = Input.GetAxis("Horizontal") * speed;
 			if (characterController.isGrounded) {
+				move.y = -1;
 				if (burstEffect.isPlaying) {
 					burstEffect.Stop();
 				}
@@ -59,16 +60,17 @@ public class CharControl : MonoBehaviour {
 					move.y = jumpForce;
 					burstNum--;	
 					var emitParams = new ParticleSystem.EmitParams();
+					emitParams.startSize = 1;
 					var main = burstEffect.main;
 					main.startSpeed = 5;
-					burstEffect.Emit(30);
+					burstEffect.Emit(emitParams, 30);
 					main.startSpeed = 1;
 					burstEffect.Play();
 				}
-				if (move.y > -50) {//checks for terminal velocity
+				if (move.y > -40) {//checks for terminal velocity
 					move.y -= gravity * Time.deltaTime;//only applies gravity off the ground
 				} else {
-					move.y = -50;//applies terminal velocity
+					move.y = -40;//applies terminal velocity
 				}
 			}
 			moveTimed.x = move.x*Time.deltaTime;//deltaTime is applied seperately so modifiers are easily implemented

@@ -9,13 +9,14 @@ public class vertCamAI : MonoBehaviour {
 	public float speedSet;
 	public NavMeshAgent agent;
 	void Update () {
-		agent.destination = new Vector3(0, 0, player.position.y);
+		agent.ResetPath();
+		agent.destination = new Vector3(0, player.position.z, player.position.y);
 		if (agent.pathPending) {
-			dist = Vector3.Distance(transform.position, new Vector3(player.position.x, player.position.z, player.position.y));
+			dist = Vector3.Distance(transform.position, new Vector3(0, player.position.z, player.position.y));
 		} else {
 			dist = agent.remainingDistance;
 		}
-		speedSet = Mathf.Pow(dist, 2) + 5;
+		speedSet = dist*4 + 1;
 		if (speedSet > 200) {
 			agent.speed = 200;
 		} else {
