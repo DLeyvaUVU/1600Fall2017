@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthModifiers : MonoBehaviour {
 	public GameObject HealthBar, endScreen;
@@ -30,8 +31,13 @@ public class HealthModifiers : MonoBehaviour {
 				break;
 			case ModType.quickDeath:
 				hpDec();
-				player.position = ReplayGame.startPosition;
-				player.Translate(0,10,0);
+				player.gameObject.SendMessage("ResetPlayer");
+				break;
+			case ModType.goal:
+				ReplayGame.GameEnd = true;
+				endScreen.SetActive(true);
+				Text WinText = endScreen.GetComponentInChildren<Text>();
+				WinText.text = "You Win!";
 				break;
 		}
 	}

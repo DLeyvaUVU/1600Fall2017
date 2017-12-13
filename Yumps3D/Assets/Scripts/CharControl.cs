@@ -12,12 +12,12 @@ public class CharControl : MonoBehaviour {
 	public Vector3 moveTimed;//movement with frametiming applied for framerate independence
 	public float speed;
 	public float jumpForce;
-	public static int burstNum = 50;
+	public static int burstNum = 0;
 	public static float health = 100;//global variable for the player's health
 	public Text BurstUI;
 	public GameObject HealthBar;
 	public static bool playerActive = true;
-	List<GameObject> ResetObjects = new List<GameObject>();
+	public static List<GameObject> ResetObjects = new List<GameObject>();
 	void Start () {
 		BurstUI.text = burstNum.ToString();
 	}
@@ -25,7 +25,10 @@ public class CharControl : MonoBehaviour {
 	{
 		switch (other.gameObject.tag){ //looks at the tag of the other object
 			case "checkpoint":
+				ReplayGame.BurstReset= burstNum;
 				ReplayGame.startPosition = other.transform.position;//sets checkpoint
+				ResetObjects.Clear();
+				other.gameObject.SetActive(false);
 				break;
 			case "burstUP":
 				burstNum++;
@@ -36,6 +39,14 @@ public class CharControl : MonoBehaviour {
 			default:
 				break;
 		}
+	}
+	void ResetPlayer () {
+		foreach (GameObject Object in CharControl.ResetObjects) {
+			Object.SetActive(true);
+		}
+		transform.position = ReplayGame.startPosition;
+		burstNum = ReplayGame.BurstReset;
+		BurstUI.text = burstNum.ToString();
 	}
 	void Update () {
 		if (playerActive) {
@@ -76,6 +87,7 @@ public class CharControl : MonoBehaviour {
 			characterController.Move(moveTimed);
 		}
 		if (Input.GetKeyDown(KeyCode.R)) {
+			ResetPlayer();
 		}
 	}
 }

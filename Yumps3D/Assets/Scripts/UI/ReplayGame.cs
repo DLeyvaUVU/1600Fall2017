@@ -10,6 +10,7 @@ public class ReplayGame : MonoBehaviour {
 	public GameObject GameOverUI;
 	public static Vector3 startPosition;
 	public static bool GameEnd;
+	public static int BurstReset = 0;
 	void Awake()
 	{
 		startPosition = player.position;
@@ -20,6 +21,10 @@ public class ReplayGame : MonoBehaviour {
 			var Scene = SceneManager.GetActiveScene();
 			SceneManager.LoadScene(Scene.name);
 		} else {
+			foreach (GameObject Object in CharControl.ResetObjects) {
+				Object.SetActive(true);
+			}
+			CharControl.burstNum = BurstReset;
 			CharControl.health = 100;
 			CharControl.playerActive = true;
 			player.position = startPosition;
