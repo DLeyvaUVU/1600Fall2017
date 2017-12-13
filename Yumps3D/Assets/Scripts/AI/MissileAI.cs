@@ -8,10 +8,6 @@ public class MissileAI : MonoBehaviour {
 	public float dist;
 	public float speedSet;
 	public NavMeshAgent agent;
-	void OnCollisionEnter()
-	{
-		gameObject.SetActive(false);
-	}
 	void Update () {
 		agent.ResetPath();
 		agent.destination = new Vector3(player.position.x, player.position.z, player.position.y);
