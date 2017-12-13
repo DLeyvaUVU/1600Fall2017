@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharControl : MonoBehaviour {
 	public CharacterController characterController;
@@ -14,11 +15,12 @@ public class CharControl : MonoBehaviour {
 	public float jumpForce;
 	public static int burstNum = 50;
 	public static float health = 100;//global variable for the player's health
-	public static int TotalCoins;
-	public Text CoinUI;
+	public Text BurstUI;
 	public GameObject HealthBar;
 	public static bool playerActive = true;
+	List<GameObject> ResetObjects = new List<GameObject>();
 	void Start () {
+		BurstUI.text = burstNum.ToString();
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -26,25 +28,21 @@ public class CharControl : MonoBehaviour {
 			case "checkpoint":
 				ReplayGame.startPosition = other.transform.position;//sets checkpoint
 				break;
-			case "coin":
-				TotalCoins = int.Parse(CoinUI.text);//gets current amount of coins
-				StartCoroutine(collectCoin());
+			case "burstUP":
+				burstNum++;
+				BurstUI.text = burstNum.ToString();
+				ResetObjects.Add(other.gameObject);
 				other.gameObject.SetActive(false);
 				break;
 			default:
 				break;
 		}
 	}
-	IEnumerator collectCoin () {
-		int newCoins = TotalCoins + 10;
-		while (TotalCoins < newCoins) {
-			TotalCoins++;
-			CoinUI.text = TotalCoins.ToString();
-			yield return 0;
-		}
-	}
 	void Update () {
 		if (playerActive) {
+			if ((characterController.collisionFlags & CollisionFlags.Above) != 0) {
+				move.y = 0;
+			}
 			move.x = Input.GetAxis("Horizontal") * speed;
 			if (characterController.isGrounded) {
 				move.y = -1;
@@ -56,9 +54,15 @@ public class CharControl : MonoBehaviour {
 				}
 
 			} else {
+				if (move.y > -40) {//checks for terminal velocity
+					move.y -= gravity * Time.deltaTime;//only applies gravity off the ground
+				} else {
+					move.y = -40;//applies terminal velocity
+				}
 				if (Input.GetKeyDown("space")&&(burstNum>0)) {
 					move.y = jumpForce;
 					burstNum--;	
+					BurstUI.text = burstNum.ToString();
 					var emitParams = new ParticleSystem.EmitParams();
 					emitParams.startSize = 1;
 					var main = burstEffect.main;
@@ -67,15 +71,14 @@ public class CharControl : MonoBehaviour {
 					main.startSpeed = 1;
 					burstEffect.Play();
 				}
-				if (move.y > -40) {//checks for terminal velocity
-					move.y -= gravity * Time.deltaTime;//only applies gravity off the ground
-				} else {
-					move.y = -40;//applies terminal velocity
-				}
 			}
 			moveTimed.x = move.x*Time.deltaTime;//deltaTime is applied seperately so modifiers are easily implemented
 			moveTimed.y = move.y*Time.deltaTime;
 			characterController.Move(moveTimed);
+		}
+		if (Input.GetKeyDown(KeyCode.R)) {
+			var Scene = SceneManager.GetActiveScene();
+			SceneManager.LoadScene(Scene.name);
 		}
 	}
 }

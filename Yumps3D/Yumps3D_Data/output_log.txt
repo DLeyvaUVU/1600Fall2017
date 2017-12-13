@@ -1,0 +1,42 @@
+Initialize engine version: 5.6.0f3 (497a0f351392)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 860M (ID=0x1392)
+    Vendor:   NVIDIA
+    VRAM:     2018 MB
+    Driver:   21.21.13.7654
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Damian\Documents\Git Kraken\1600Fall2017\Yumps3D\Yumps3D_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Damian\Documents\Git Kraken\1600Fall2017\Yumps3D\Yumps3D_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Damian\Documents\Git Kraken\1600Fall2017\Yumps3D\Yumps3D_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Damian\Documents\Git Kraken\1600Fall2017\Yumps3D\Yumps3D_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Damian\Documents\Git Kraken\1600Fall2017\Yumps3D\Yumps3D_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Damian\Documents\Git Kraken\1600Fall2017\Yumps3D\Yumps3D_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Damian\Documents\Git Kraken\1600Fall2017\Yumps3D\Yumps3D_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Damian\Documents\Git Kraken\1600Fall2017\Yumps3D\Yumps3D_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.495 seconds
+Platform assembly: C:\Users\Damian\Documents\Git Kraken\1600Fall2017\Yumps3D\Yumps3D_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Damian\Documents\Git Kraken\1600Fall2017\Yumps3D\Yumps3D_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at -1920,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 3.901374 ms
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: 3afc -> priority: 1 
+  Thread -> id: 5514 -> priority: 1 
+  Thread -> id: 4e80 -> priority: 1 
+  Thread -> id: 47a8 -> priority: 1 
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 9.838900 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 389.
+Total: 0.749641 ms (FindLiveObjects: 0.071450 ms CreateObjectMapping: 0.060397 ms MarkObjects: 0.594502 ms  DeleteObjects: 0.020527 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.153082 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 389.
+Total: 0.804118 ms (FindLiveObjects: 0.071056 ms CreateObjectMapping: 0.054476 ms MarkObjects: 0.655689 ms  DeleteObjects: 0.020132 ms)
+
