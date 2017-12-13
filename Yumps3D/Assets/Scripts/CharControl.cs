@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class CharControl : MonoBehaviour {
 	public CharacterController characterController;
@@ -77,8 +76,6 @@ public class CharControl : MonoBehaviour {
 			characterController.Move(moveTimed);
 		}
 		if (Input.GetKeyDown(KeyCode.R)) {
-			var Scene = SceneManager.GetActiveScene();
-			SceneManager.LoadScene(Scene.name);
 		}
 	}
 }

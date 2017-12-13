@@ -6,6 +6,7 @@ public class HealthModifiers : MonoBehaviour {
 	public GameObject HealthBar, endScreen;
 	public Transform player;
 	public int hpMod;
+	bool collision;
 	public enum ModType {
 		goal,
 		quickDeath,
@@ -17,7 +18,12 @@ public class HealthModifiers : MonoBehaviour {
 	{
 		switch (powerUp) {
 			case ModType.hpUp:
-				hpInc();
+				collision = true;
+				StartCoroutine(healthFill());
+				if (gameObject.GetComponentInChildren<ParticleSystem>() != null) {
+					ParticleSystem effects = gameObject.GetComponentInChildren<ParticleSystem>();
+					effects.Play();
+				}
 				break;
 			case ModType.hpDown:
 				hpDec();
@@ -27,6 +33,21 @@ public class HealthModifiers : MonoBehaviour {
 				player.position = ReplayGame.startPosition;
 				player.Translate(0,10,0);
 				break;
+		}
+	}
+	void OnTriggerExit()
+	{
+		if (gameObject.GetComponentInChildren<ParticleSystem>() != null) {
+			ParticleSystem effects = gameObject.GetComponentInChildren<ParticleSystem>();
+			effects.Stop();
+		}
+		collision = false;
+		StopAllCoroutines();
+	}
+	IEnumerator healthFill () {
+		while (collision) {
+			hpInc();
+			yield return new WaitForSeconds(.5f);
 		}
 	}
 	void hpInc () {
